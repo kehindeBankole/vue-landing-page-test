@@ -1,58 +1,151 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="row">
+    <div class="col-lg-6" id="firsthalf">
+      <h1 id="name">{{ person.name }}</h1>
+      <div class="firsthalfnav">
+        <h3>home</h3>
+        <h3>about</h3>
+      </div>
+    </div>
+    <div class="image-container">
+      <img src="../assets/girl.png" alt="girl image" />
+    </div>
+<div class="circleimage">
+  <img src="../assets/black.jpg" alt="girl image" />
+</div>
+    <div class="col-lg-6" id="secondhalf">
+      <div class="secondhalfnav">
+        <h3>gallery</h3>
+        <h3>contact</h3>
+      </div>
+      <div class="icon-bar">
+        <a
+         
+          class="facebook"
+          ><i class="fa fa-instagram"></i
+        ></a>
+        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="google"><i class="fa fa-snapchat"></i></a>
+        <a href="#" class="linkedin"><i class="fa fa-envelope"></i></a>
+      </div>
+    </div>
   </div>
 </template>
-
+//  :href="`/instagram.com/${person.social_media.instagram}`"
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  methods: {},
+  data() {
+    return {
+      person: "",
+    };
+  },
+  mounted() {
+    fetch("https://hirng-x2021.glitch.me/api")
+      .then((response) => response.json())
+      .then((data) => (this.person = data));
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
+* {
+  margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 100;
+  color: #ffffff;
+  overflow: hidden;
 }
-a {
-  color: #42b983;
+#name {
+  letter-spacing: 1rem;
+  position: absolute;
+  left: 33%;
+}
+#firsthalf,
+#secondhalf {
+  height: 100vh;
+}
+#firsthalf {
+  background-color: #bd0f4d;
+}
+#secondhalf {
+  background-color: #cb2964;
+}
+.firsthalfnav {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 200px;
+}
+.secondhalfnav {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  right: 200px;
+}
+.firsthalfnav h3,
+.secondhalfnav h3 {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+.firsthalfnav h3,
+.secondhalfnav h3 {
+  margin-left: 50px;
+}
+.image-container {
+  width: 500px;
+  height: 500px;
+  background-color: #ca2b65;
+  position: absolute;
+  left: 33%;
+  top: 10%;
+  overflow: hidden;
+  -webkit-box-shadow: -4px 10px 37px -12px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -4px 10px 37px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: -4px 10px 37px -12px rgba(0, 0, 0, 0.75);
+}
+.image-container img {
+  position: relative;
+  top: -68px;
+  height: 700px;
+  right: 55%;
+}
+.circleimage{
+  position: absolute;
+  width:80px;
+  height: 80px;
+  border:1px solid white;
+  border-radius: 50%;
+  bottom: 0;
+  left: 47%;
+  background-image: url('../assets/black.jpg');
+  background-position: center;
+}
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 40px;
 }
 </style>
